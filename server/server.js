@@ -1,17 +1,18 @@
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
+// const express = require('express');
+// const path = require('path');
+// const cors = require('cors');
+const app = require('./app');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const app = express();
+// const bodyParser = require('body-parser');
+// const morgan = require('morgan');
+// const app = express();
 const PORT = process.env.PORT || 3333;
 
 require('./database/movie');
 // if (process.env.NODE_ENV === 'test') {
 //   after('close database connection', () => db.close())
 // }
-module.exports = app;
+// module.exports = app;
 
 require('dotenv').config();
 if (process.env.NODE_ENV !== 'production') require('./secret.js');
@@ -40,29 +41,29 @@ mongoose.connection.on("disconnected", () => {
   console.log("Database disconnected, bye bye!");
 });
 
-app.use(cors());
-app.use(morgan('dev'))
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+// app.use(cors());
+// app.use(morgan('dev'))
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: false}));
 
 
-app.use('/api', require('./api'));
+// app.use('/api', require('./api'));
 
-app.use(express.static(path.join(__dirname, '..', 'public')));
+// app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// // app.get('/', function (req, res) {
+// //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// // });
+
+// app.use('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'public/index.html'))
 // });
 
-app.use('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public/index.html'))
-});
 
-
-app.use((err, req, res, next) => {
-  console.error(err)
-  console.error(err.stack)
-  res.status(err.status || 500).send(err.message || 'Internal server error.')
-});
+// app.use((err, req, res, next) => {
+//   console.error(err)
+//   console.error(err.stack)
+//   res.status(err.status || 500).send(err.message || 'Internal server error.')
+// });
 
 app.listen(PORT, () => console.log("Connected to the server! 🚀"));
