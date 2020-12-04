@@ -1,11 +1,8 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
 
 // colors
-const primary = "#b3294e";
-const secondary = "#4829B2";
 const black = "#343a40";
 const darkBlack = "rgb(36, 40, 44)";
-const background = "#f5f5f5";
 const warningLight = "rgba(253, 200, 69, .3)";
 const warningMain = "rgba(253, 200, 69, .5)";
 const warningDark = "rgba(253, 200, 69, .7)";
@@ -26,11 +23,17 @@ const spacing = 8;
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: primary },
-    secondary: { main: secondary },
+    primary: {
+      main: "#e8f5e9",
+      dark: "#b6c2b7"
+    },
+    secondary: {
+      main: "#e0f7fa",
+      dark: "#aec4c7"
+    },
     common: {
       black,
-      darkBlack
+      darkBlack,
     },
     warning: {
       light: warningLight,
@@ -42,7 +45,8 @@ const theme = createMuiTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
     background: {
-      default: background
+      default: "#FBFAF5",
+      // other: "#f5f5f5"
     },
     spacing
   },
@@ -63,6 +67,15 @@ const theme = createMuiTheme({
   border: {
     borderColor: borderColor,
     borderWidth: borderWidth
+  },
+  typography: {
+    fontFamily: [
+      "Roboto",
+      "Helvetica Neue",
+      "sans-serif",
+      "-apple-system",
+      "Segoe UI"
+    ]
   },
   overrides: {
     MuiExpansionPanel: {
@@ -97,19 +110,6 @@ const theme = createMuiTheme({
         borderBottom: `${borderWidth}px solid ${borderColor}`
       }
     },
-    MuiDialog: {
-      paper: {
-        width: "100%",
-        maxWidth: 430,
-        marginLeft: spacing,
-        marginRight: spacing
-      }
-    },
-    MuiTooltip: {
-      tooltip: {
-        backgroundColor: darkBlack
-      }
-    },
     MuiExpansionPanelDetails: {
       root: {
         [`@media (max-width:  ${sm}px)`]: {
@@ -118,9 +118,6 @@ const theme = createMuiTheme({
         }
       }
     }
-  },
-  typography: {
-    useNextVariants: true
   }
 });
 

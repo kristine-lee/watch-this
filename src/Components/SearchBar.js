@@ -3,10 +3,25 @@ import axios from 'axios';
 import {
   Button,
   FormControl,
-  Input,
-  InputLabel
+  Paper,
+  InputLabel,
+  TextField,
+  Grid
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 // import apiKey from "../secret"
+
+// const useStyles = makeStyles((theme) => ({
+//   paper: {
+//     margin: theme.spacing(8,4),
+//     display: 'flex',
+//   },
+//   form: {
+//     width: '100%'
+//   }
+// }
+// ))
+
 
 const SearchBar = (props) => {
 
@@ -23,9 +38,10 @@ const SearchBar = (props) => {
       }
     });
     if (searchResults.data.length === 0) {
-      console.log("sorry!")
+      console.log("sorry!");
+      //TODO: make a component for handling errors
     }
-    console.log("WHAT IS THE RESULT", searchResults.data);
+    // console.log("WHAT IS THE RESULT", searchResults.data);
     setResults(searchResults.data);
      }
     catch (error){
@@ -38,15 +54,19 @@ const SearchBar = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl name="searchMovies">
-        <InputLabel htmlFor="movieName">
-          Search for a movie here
-        </InputLabel>
-        <Input id="movieSearch" onChange={handleChange}/>
-      </FormControl>
-      <Button variant="outlined" type="submit" />
-    </form>
+    // <Grid container justify="center" alignItems="center" >
+      <Grid item xs={12} sm={6}>
+        <form onSubmit={handleSubmit}>
+          <FormControl name="searchMovies">
+            <InputLabel htmlFor="movieName">
+              The world awaits you
+            </InputLabel>
+            <TextField required fullWidth id="movieSearch" variant="filled" onChange={handleChange} />
+          </FormControl>
+          <Button variant="contained" color="primary" type="submit" />
+        </form>
+      </Grid>
+    // </Grid>
   )
 }
 
