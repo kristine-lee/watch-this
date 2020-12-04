@@ -1,7 +1,29 @@
 const mongoose = require('mongoose');
-const Movies = require('../database/movie')
+const axios = require('axios');
+const Movies = require('../database/movie');
 
 module.exports = {
+  searchMovies: async (req, res, next) => {
+    try {
+      console.log("QUERY", req.query)
+      const search = req.query.search;
+      const APIKey = process.env.API_KEY;
+      const response = await axios.get("https://api.themoviedb.org/3/search/movie",
+        { params: {
+          api_key: APIKey,
+          query: search,
+          include_adult: false,
+          language: "en_US"
+        }
+      })
+        const searchResult = response.data.results;
+        console.log("RESULT", searchResult)
+        res.send(searchResult);
+    } catch (error) {
+      next(error);
+    }
+  },
+
   getAllMovies: async (req, res, next) => {
     try {
       const allMovies = await Movies.find();

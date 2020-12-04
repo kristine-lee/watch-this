@@ -6,6 +6,8 @@ const app = require('../app');
 
 const PORT = process.env.PORT;
 
+//https://medium.com/@tehvicke/integration-and-unit-testing-with-jest-in-nodejs-and-mongoose-bd41c61c9fbc
+
 //test a fake instance of the server instead of calling the entire thing
 app.use('/api', router);
 
