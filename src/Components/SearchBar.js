@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import {
   Button,
   FormControl,
-  Paper,
   InputLabel,
   TextField,
   Grid
@@ -22,12 +22,33 @@ import { makeStyles } from '@material-ui/core/styles';
 // }
 // ))
 
+const useStyles = makeStyles((theme) => ({
+  searchContainer: {
+    "@media (max-width: 900px)": {
+      direction: "column"
+    },
+    "@media (min-width: 900px)": {
+      flexGrow: 1
+    }
+  },
+  searchBar: {
+    margin: "0 auto"
+  },
+  form: {
+    width: '100%'
+  }
+}
+));
+
 
 const SearchBar = (props) => {
 
   const { setResults } = props;
 
   const [searchKey, setSearchKey] = React.useState("");
+
+  const classes = useStyles();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,7 +59,7 @@ const SearchBar = (props) => {
       }
     });
     if (searchResults.data.length === 0) {
-      console.log("sorry!");
+      alert("sorry! there's no result!");
       //TODO: make a component for handling errors
     }
     // console.log("WHAT IS THE RESULT", searchResults.data);
@@ -54,19 +75,24 @@ const SearchBar = (props) => {
   }
 
   return (
-    // <Grid container justify="center" alignItems="center" >
-      <Grid item xs={12} sm={6}>
+    <>
+    <Grid container direction="row" justify="center" alignItems="center" spacing={2} wrap="nowrap" className={classes.searchContainer} >
         <form onSubmit={handleSubmit}>
-          <FormControl name="searchMovies">
+        <Grid item xs={12} className={classes.searchBar}>
+          <FormControl name="searchMovies" className={classes.form}>
             <InputLabel htmlFor="movieName">
-              The world awaits you
+              What are you looking for today?
             </InputLabel>
-            <TextField required fullWidth id="movieSearch" variant="filled" onChange={handleChange} />
+            <TextField required fullWidth id="movieSearch" autoFocus variant="filled" onChange={handleChange} />
           </FormControl>
-          <Button variant="contained" color="primary" type="submit" />
+          </Grid>
+          <Grid item xs={6} sm={3}>
+            <Button variant="contained" color="primary" type="submit">Search</Button>
+          </Grid>
         </form>
-      </Grid>
-    // </Grid>
+    </Grid>
+    <div className="searchbar-background" />
+    </>
   )
 }
 

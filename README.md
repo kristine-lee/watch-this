@@ -20,7 +20,7 @@ cd watch-this
 Create a file called "secrets" and add it to your gitignore.
 
 4. Start the Project
-cd server
+cd server **important!**
 npm run start
 
 # Built With
