@@ -1,12 +1,11 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import SearchBar from './SearchBar';
-import ResultsPage from './ResultsPage';
 import { Grid, Container, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import front from '../assets/pexels-ketut-subiyanto-4350099.jpg';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     height: '100vh',
    },
@@ -46,7 +45,7 @@ const Home = () => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxwidth="lg" justify="center" alignItems="center" className={classes.root}>
+      <Container maxwidth="lg" justify="center" className={classes.root}>
       <img className="cover" src={front} alt="smiling woman front cover" />
         {/* <Grid container spacing={2}>
           <Grid item xs={12} className={classes.header}>

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
+  externalId: Number,
   title: String,
   thumbsUp: {
     type: Number,

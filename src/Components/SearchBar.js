@@ -1,26 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  TextField,
-  Grid
-} from '@material-ui/core';
+import {Button, FormControl, TextField, Grid, InputAdornment} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import apiKey from "../secret"
-
-// const useStyles = makeStyles((theme) => ({
-//   paper: {
-//     margin: theme.spacing(8,4),
-//     display: 'flex',
-//   },
-//   form: {
-//     width: '100%'
-//   }
-// }
-// ))
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
   searchContainer: {
@@ -44,9 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const SearchBar = (props) => {
 
   const { setResults } = props;
-
   const [searchKey, setSearchKey] = React.useState("");
-
   const classes = useStyles();
 
 
@@ -60,9 +40,7 @@ const SearchBar = (props) => {
     });
     if (searchResults.data.length === 0) {
       alert("sorry! there's no result!");
-      //TODO: make a component for handling errors
     }
-    // console.log("WHAT IS THE RESULT", searchResults.data);
     setResults(searchResults.data);
      }
     catch (error){
@@ -80,10 +58,22 @@ const SearchBar = (props) => {
         <form onSubmit={handleSubmit}>
         <Grid item xs={12} className={classes.searchBar}>
           <FormControl name="searchMovies" className={classes.form}>
-            <InputLabel htmlFor="movieName">
-              What are you looking for today?
-            </InputLabel>
-            <TextField required fullWidth id="movieSearch" autoFocus variant="filled" onChange={handleChange} />
+            <TextField
+              aria-label="search bar"
+              required fullWidth
+              id="movieSearch"
+              label="search"
+              placeholder="What are you looking for today?"
+              autoFocus
+              variant="filled"
+              InputProps={{
+                startAdornment:
+                (<InputAdornment variant="outlined" position="end">
+                  <SearchIcon />
+                </InputAdornment>),
+              }}
+              onChange={handleChange}
+              />
           </FormControl>
           </Grid>
           <Grid item xs={6} sm={3}>

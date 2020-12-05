@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import {Home, Header, ResultsPage} from './Components/index';
+import {Home, Header, ResultsPage, SingleMovie} from './Components/index';
 
 const Routes = () => {
   return (
@@ -8,7 +8,10 @@ const Routes = () => {
       <Header />
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route path="/results" render={(props) => <ResultsPage {...props}/>} />
+        <Route exact path="/results" render={(props) => <ResultsPage {...props}/>} />
+        {/* <Route path="/results/:id" render={(props) => <SingleMovie {...props} />} /> */}
+        <Route path="/movies/:id"render={({ match }) => (
+          <SingleMovie params={match.params} />)} />
       </Switch>
     </React.Fragment>
   )

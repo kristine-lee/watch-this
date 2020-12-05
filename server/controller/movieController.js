@@ -5,7 +5,7 @@ const Movies = require('../database/movie');
 module.exports = {
   searchMovies: async (req, res, next) => {
     try {
-      console.log("QUERY", req.query)
+      // console.log("QUERY", req.query)
       const search = req.query.search;
       const APIKey = process.env.API_KEY;
       const response = await axios.get("https://api.themoviedb.org/3/search/movie",
@@ -17,7 +17,7 @@ module.exports = {
         }
       })
         const searchResult = response.data.results;
-        console.log("RESULT", searchResult)
+        // console.log("RESULT", searchResult)
         res.send(searchResult);
     } catch (error) {
       next(error);
@@ -46,11 +46,26 @@ module.exports = {
   },
 
   getOneMovie: async (req, res, next) => {
-    const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) throw new Error(`There's no movie by the id: ${id}`);
+    console.log("REQREQ", req.query)
+    const externalId = req.query.id;
+    const APIKey = process.env.API_KEY;
+    // const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(externalId)) throw new Error(`There's no movie by the id: ${externalId}`);
     try {
-      const foundMovie = Movies.findById(id);
-      res.status(200).json(foundMovie)
+      const response = await axios.get("https://api.themoviedb.org/3/movie/",
+      { params: {
+        api_key: APIKey,
+        movie_id: externalId,
+        include_adult: false,
+        language: "en_US"
+      }
+    })
+      const foundMovie = await Movies.findById({externalId: externalId});
+      if (!foundMovie) {
+        res.status(200).json(response.data);
+      } else {
+        res.json(foundMovie);
+      }
     } catch (error) {
       next (error);
     }

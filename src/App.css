@@ -46,6 +46,7 @@ img {
 form {
   width: calc(100vw - 25%);
   margin: 1rem;
+  margin-top: 3rem;
   /* position: relative; */
 }
 
@@ -62,11 +63,6 @@ form button {
   display: inline-block;
   margin-right: 4vw;
   background-position: calc(100% - 50px) calc(100% - 20px);
-  /* background-image: radial-gradient(rgba(224, 148, 100, 0.67), transparent), radial-gradient(rgba(224, 148, 100, 0.67), transparent);
-  background-size: calc(20 * 1px) calc(20 * 1px);
-  background-position: 0 0, calc(20 * 1px) calc(20 * 1px); */
-  /* z-index: 5; */
-  /* background-color: #f6a436;*/
 }
 
 /* Animation */
@@ -79,13 +75,13 @@ form button {
   text-align: center;
   overflow: hidden;
   font-size: 3rem;
-  animation: typing 3.5s steps(30, end);
+  animation: typing 2s steps(30, end);
   transform: translateY(-50%);
 }
 
 /* Animation */
 .anim-typewriter{
-  animation: typewriter 3s steps(44) 1s 1 normal both;
+  animation: typewriter 2s steps(20) 1s 1 normal both;
 }
 @keyframes typewriter{
   from{width: 0;}
