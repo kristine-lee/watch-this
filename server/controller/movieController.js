@@ -46,11 +46,10 @@ module.exports = {
   },
 
   getOneMovie: async (req, res, next) => {
-    console.log("REQREQ", req.query)
-    const externalId = req.query.id;
+    // console.log("REQREQ", req.query)
+    console.log("REQ PARAMS", req.params)
+    const externalId = req.params.id;
     const APIKey = process.env.API_KEY;
-    // const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(externalId)) throw new Error(`There's no movie by the id: ${externalId}`);
     try {
       const response = await axios.get("https://api.themoviedb.org/3/movie/",
       { params: {
@@ -60,12 +59,13 @@ module.exports = {
         language: "en_US"
       }
     })
-      const foundMovie = await Movies.findById({externalId: externalId});
-      if (!foundMovie) {
-        res.status(200).json(response.data);
-      } else {
-        res.json(foundMovie);
-      }
+    res.json(response.data);
+      // const foundMovie = await Movies.findById({externalId: externalId});
+      // if (!foundMovie) {
+      //   res.status(200).json(response.data);
+      // } else {
+      //   res.json(foundMovie);
+      // }
     } catch (error) {
       next (error);
     }
