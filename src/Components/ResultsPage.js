@@ -26,24 +26,24 @@ const ResultsPage = (props) => {
 
   const classes = useStyles();
 
-  const handleClick = async (event) => {
-    event.preventDefault();
-    try {
-      const movieDetails = await axios.get(`/api/movies/:id`, {
-        params: {
-          externalId: event.currentTarget.id
-        }
-      })
-      console.log("details", movieDetails.data)
-      if (!movieDetails.data) {
-        throw new Error("Was able to communicate with the back end, but there's an error!")
-      } else {
-        setSingleMovie(movieDetails.data);
-      }
-    } catch (error){
-      alert("There was an error!")
-    }
-  }
+  // const handleClick = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const movieDetails = await axios.get(`/api/movies/:id`, {
+  //       params: {
+  //         externalId: event.currentTarget.id
+  //       }
+  //     })
+  //     console.log("details", movieDetails.data)
+  //     if (!movieDetails.data) {
+  //       throw new Error("Was able to communicate with the back end, but there's an error!")
+  //     } else {
+  //       setSingleMovie(movieDetails.data);
+  //     }
+  //   } catch (error){
+  //     alert("There was an error!")
+  //   }
+  // }
 
   // React.useEffect(() => {
   //   if (singleMovie.id !== 0 && singleMovie.title.length > 0){
@@ -65,7 +65,7 @@ const ResultsPage = (props) => {
         {/* <Grid item xs={3} className={classes.card}> */}
         {results && results.map((result) =>
         <Grid item xs={3} className={classes.card}>
-          <ResultCard key={result.id} id={result.id} title={result.title} poster_path={result.poster_path} handleClick={handleClick} />
+          <ResultCard key={result.id} id={result.id} title={result.title} poster_path={result.poster_path} />
         </Grid>
         )}
       <ul>

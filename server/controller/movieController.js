@@ -17,7 +17,6 @@ module.exports = {
         }
       })
         const searchResult = response.data.results;
-        // console.log("RESULT", searchResult)
         res.send(searchResult);
     } catch (error) {
       next(error);
@@ -35,8 +34,8 @@ module.exports = {
   },
 
   addMovie: async (req, res, next) => {
-    const { title, thumbsUp, thumbsDown } = req.body;
-    const newMovie = new Movies({title, thumbsUp, thumbsDown});
+    const { id, title, thumbsUp, thumbsDown } = req.body;
+    const newMovie = new Movies({id, title, thumbsUp, thumbsDown});
     try {
       await newMovie.save();
       res.status(201).json(newMovie);
@@ -46,15 +45,14 @@ module.exports = {
   },
 
   getOneMovie: async (req, res, next) => {
-    // console.log("REQREQ", req.query)
     console.log("REQ PARAMS", req.params)
+    //search from mongodb first?
     const externalId = req.params.id;
     const APIKey = process.env.API_KEY;
     try {
-      const response = await axios.get("https://api.themoviedb.org/3/movie/",
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/${externalId}`,
       { params: {
         api_key: APIKey,
-        movie_id: externalId,
         include_adult: false,
         language: "en_US"
       }

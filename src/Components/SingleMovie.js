@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import {Grid, makeStyles } from '@material-ui/core';
-import { useLocation, useParams } from 'react-router-dom';
+import { Grid, makeStyles } from '@material-ui/core';
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -32,10 +32,12 @@ https://krasimir.gitbooks.io/react-in-patterns/content/chapter-04/#function-as-a
 const SingleMovie = () => {
   const [likes, setLikes] = React.useState(0);
   const [dislikes, setDisLikes] = React.useState(0);
-  const [singleMovie, setSingleMovie] = React.useState(null) /* need initial state bc useEffect only runs after mounting i think */
+  const [singleMovie, setSingleMovie] = React.useState(null) /* need initial state bc useEffect only runs after mounting  */
   /* or try using onLoad event handler? */
-  const movieId = useParams();
-  const idId = movieId.id
+
+  //cannot deconstruct movieId directly, not sure why!
+  const movieIdObj = useParams();
+  const movieId = movieIdObj.id
 
   console.log(movieId.id);
 
@@ -47,7 +49,7 @@ const SingleMovie = () => {
 
   const fetchMovieDetails = React.useCallback(async () => {
     try {
-      const movieDetails = await axios.get(`/api/movies/${idId}`)
+      const movieDetails = await axios.get(`/api/movies/${movieId}`)
       if (!movieDetails.data) {
         throw new Error("Was able to communicate with the back end, but there's an error!")
       } else {
@@ -58,7 +60,7 @@ const SingleMovie = () => {
     } catch (error){
       alert("There was an error fetching the movie!")
     }
-  }, [])
+  }, [movieId])
 
 
   React.useEffect(() => {
@@ -67,7 +69,7 @@ const SingleMovie = () => {
 
   return (
     <div className={classes.root}>
-      <h1>Hi wtf</h1>
+      <h1>Getting some movies here</h1>
       <Grid container alignItems="center" spacing={3}>
         <Grid item xs>
         {singleMovie && <h2>{singleMovie.title}</h2>}
