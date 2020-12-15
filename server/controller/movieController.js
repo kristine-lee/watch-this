@@ -73,8 +73,12 @@ module.exports = {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) throw new Error(`There's no movie by the id: ${id}`);
     //if this doesn't work, first find by id, save to a variable, and then write the update option like (id, {thumbsUp: variable.thumbsUp + 1})
-    const likedMovie = Movies.findByIdAndUpdate(id, {thumbsUp: this.thumbsUp + 1}, {returnOriginal: false}) //to get back the updated object;
-    res.status(200).json(likedMovie);
+    try {
+      const likedMovie = await Movies.findByIdAndUpdate(id, {thumbsUp: this.thumbsUp + 1}, {returnOriginal: false}) //to get back the updated object;
+      res.status(200).json(likedMovie);
+    } catch (error) {
+      next (error);
+    }
   },
 
   dislikeMovie: async (req, res, next) => {
