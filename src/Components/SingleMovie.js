@@ -69,13 +69,17 @@ const SingleMovie = () => {
 
   return (
     <div className={classes.root}>
-      <h1>Getting some movies here</h1>
-      <Grid container alignItems="center" spacing={3}>
+      <Grid container direction="column" alignItems="center" spacing={3}>
+        <h1>Getting some movies here</h1>
         <Grid item xs>
         {singleMovie && <h2>{singleMovie.title}</h2>}
         </Grid>
         <Grid item xs>
-          Explain this
+         <ul>
+           <li>Director: </li>
+           <li>Release Year: </li>
+           <li>Description: </li>
+         </ul>
         </Grid>
       </Grid>
     </div>
