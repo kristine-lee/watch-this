@@ -33,13 +33,11 @@ const SingleMovie = () => {
   const [likes, setLikes] = React.useState(0);
   const [dislikes, setDisLikes] = React.useState(0);
   const [singleMovie, setSingleMovie] = React.useState(null) /* need initial state bc useEffect only runs after mounting  */
-  /* or try using onLoad event handler? */
 
   //cannot deconstruct movieId directly, not sure why!
   const movieIdObj = useParams();
-  const movieId = movieIdObj.id
+  const movieId = movieIdObj.id;
 
-  console.log(movieId.id);
 
   const classes = useStyles();
 
@@ -72,13 +70,13 @@ const SingleMovie = () => {
       <Grid container direction="column" alignItems="center" spacing={3}>
         <h1>Getting some movies here</h1>
         <Grid item xs>
-        {singleMovie && <h2>{singleMovie.title}</h2>}
+        {singleMovie && <h2>{singleMovie.Title}</h2>}
         </Grid>
         <Grid item xs>
          <ul>
-           <li>Director: </li>
-           <li>Release Year: </li>
-           <li>Description: </li>
+           <li>Director: {singleMovie.Director} </li>
+           <li>Release Year: {singleMovie.Released.slice(-4)} </li>
+           <li>Description: {singleMovie.Plot} </li>
          </ul>
         </Grid>
       </Grid>

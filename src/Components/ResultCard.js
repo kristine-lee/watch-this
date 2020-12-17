@@ -4,16 +4,17 @@ import {Link} from 'react-router-dom';
 
 const ResultCard = (props) => {
 
-  const { id, poster_path, title } = props;
+  const { id, image_src, title } = props;
 
+  //TODO: center the image
   return (
     <Card>
       <CardHeader title={title} />
-      {poster_path ? (
+      {image_src ? (
         <CardMedia
           component="img"
           height="140"
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+          src={`${image_src}`}
         / >) :
         <CircularProgress color="secondary" />}
         <CardContent><Link to={{pathname:`/results/${id}`, state: { movieId: id} }}>Read more</Link></CardContent>

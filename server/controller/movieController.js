@@ -5,18 +5,16 @@ const Movies = require('../database/movie');
 module.exports = {
   searchMovies: async (req, res, next) => {
     try {
-      // console.log("QUERY", req.query)
-      const search = req.query.search;
+      const searchTerm = req.query.search;
       const APIKey = process.env.API_KEY;
-      const response = await axios.get("https://api.themoviedb.org/3/search/movie",
-        { params: {
-          api_key: APIKey,
-          query: search,
-          include_adult: false,
-          language: "en_US"
+      const response = await axios.get(`http://www.omdbapi.com/`,
+        { params : {
+          apiKey: APIKey,
+          s: searchTerm,
+          type: "movie",
         }
       })
-        const searchResult = response.data.results;
+        const searchResult = response.data;
         res.send(searchResult);
     } catch (error) {
       next(error);
@@ -45,26 +43,30 @@ module.exports = {
   },
 
   getOneMovie: async (req, res, next) => {
-    console.log("REQ PARAMS", req.params)
-    //search from mongodb first?
     const externalId = req.params.id;
-    const APIKey = process.env.API_KEY;
+    //search from mongodb first. if not found, then search external api
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/movie/${externalId}`,
-      { params: {
-        api_key: APIKey,
-        include_adult: false,
-        language: "en_US"
+      const foundMovie = await Movies.findOne({externalId: externalId});
+      if (!foundMovie) {
+        const APIKey = process.env.API_KEY;
+        try {
+          const response = await axios.get(`http://www.omdbapi.com/`,
+          { params : {
+            apiKey: APIKey,
+            i: externalId,
+            type: "movie",
+            plot: "short"
+          }
+        })
+        res.json(response.data);
+        } catch (error) {
+          next (error);
+        }
       }
-    })
-    res.json(response.data);
-      // const foundMovie = await Movies.findById({externalId: externalId});
-      // if (!foundMovie) {
-      //   res.status(200).json(response.data);
-      // } else {
-      //   res.json(foundMovie);
-      // }
-    } catch (error) {
+      else {
+        res.json(foundMovie);
+      }
+    } catch (error){
       next (error);
     }
   },

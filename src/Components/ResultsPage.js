@@ -62,10 +62,9 @@ const ResultsPage = (props) => {
   return (
     <Container maxwidth="lg" justify="center" className={classes.root}>
       <Grid container justify="center" >
-        {/* <Grid item xs={3} className={classes.card}> */}
         {results && results.map((result) =>
         <Grid item xs={3} className={classes.card}>
-          <ResultCard key={result.id} id={result.id} title={result.title} poster_path={result.poster_path} />
+          <ResultCard key={result._id} id={result.imdbID} title={result.Title} image_src={result.Poster} />
         </Grid>
         )}
       <ul>

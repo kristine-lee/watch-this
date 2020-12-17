@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
-  externalId: Number,
+  externalId: String,
   title: String,
+  director: String,
   thumbsUp: {
     type: Number,
     min: [1, "need at least one thumbs up!"]

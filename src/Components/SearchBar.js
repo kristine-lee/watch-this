@@ -38,10 +38,10 @@ const SearchBar = (props) => {
         search: searchKey
       }
     });
-    if (searchResults.data.length === 0) {
+    if (searchResults.data.Response !== "True") {
       alert("sorry! there's no result!");
     }
-    setResults(searchResults.data);
+    setResults(searchResults.data.Search);
      }
     catch (error){
       console.error(error);
