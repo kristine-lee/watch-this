@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Grid, Paper, makeStyles, CssBaseline } from '@material-ui/core';
+import { CSSTransition } from 'react-transition-group';
 import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
@@ -68,9 +69,11 @@ const SingleMovie = () => {
         {singleMovie && <h2>{singleMovie.Title}</h2>}
         </Grid>
         <Grid item xs={11} sm={5} className={classes.container}>
+        <CSSTransition timeout={300} classNames="slideLeft">
           <Paper variant="outlined" elevation="3" className={classes.paper}>
            {singleMovie && <img className={classes.image} alt={`poster for the movie ${singleMovie.Title}`} src={singleMovie.Poster} /> }
           </Paper>
+         </CSSTransition>
         </Grid>
         <Grid item xs={11} sm={5} className={classes.container}>
           {singleMovie &&

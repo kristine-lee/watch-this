@@ -11,7 +11,8 @@ const useStyle = makeStyles((theme) => ({
   header: {
     backgroundColor: 'transparent',
     boxShadow: 'none',
-    position: 'static'
+    position: 'static',
+    marginBottom: '4px'
   },
   siteName: {
     [theme.breakpoints.down("xs")]: {

@@ -35,11 +35,6 @@ const theme = createMuiTheme({
       black,
       darkBlack,
     },
-    warning: {
-      light: warningLight,
-      main: warningMain,
-      dark: warningDark
-    },
     // Used to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
@@ -80,6 +75,7 @@ const theme = createMuiTheme({
       color: `#b6c2b7`,
       textDecoration: 'none',
       align: 'center',
+      fontSize: '35%'
     }
   },
   overrides: {
@@ -113,6 +109,21 @@ const theme = createMuiTheme({
     MuiListItem: {
       divider: {
         borderBottom: `${borderWidth}px solid ${borderColor}`
+      }
+    },
+    MuiButton: {
+      containedPrimary: {
+        color: 'white',
+        backgroundColor: 'black',
+        size: 'large',
+        fullWidth: 'true',
+        paddingLeft: `${spacing * 3}px`,
+        paddingRight: `${spacing * 3}px`,
+        '&:hover': {
+          'cursor': 'pointer',
+          color: 'black',
+          backgroundColor: 'slateGray'
+        }
       }
     },
     MuiExpansionPanelDetails: {

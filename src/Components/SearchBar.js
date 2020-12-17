@@ -14,10 +14,15 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   searchBar: {
-    margin: "0 auto"
+    margin: "0 auto",
   },
   form: {
     width: '100%'
+  },
+  searchButton: {
+    marginTop: '10px',
+    alignSelf: 'center',
+    justifySelf: 'center'
   }
 }
 ));
@@ -77,7 +82,7 @@ const SearchBar = (props) => {
           </FormControl>
           </Grid>
           <Grid item xs={6} sm={3}>
-            <Button variant="contained" color="primary" type="submit">Search</Button>
+            <Button variant="contained" color="primary" type="submit" className={classes.searchButton}>Search</Button>
           </Grid>
         </form>
     </Grid>

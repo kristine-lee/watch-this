@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
 
 const FrontText = React.memo(() => {
   return (
-    <h2 className="type-intro anim-typewriter">Movie Search, All Redefined Just For You</h2>
+    <h2 className="type-intro anim-typewriter"><span className="highlight">Movie Search, All Redefined Just For You</span></h2>
   )
 })
 

@@ -3,11 +3,19 @@ import { Card, CardHeader, CardMedia, CardContent, CircularProgress, makeStyles,
 import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
+  eachCard: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
   image: {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     objectFit: 'cover',
+  },
+  cardContent: {
+    flexGrow: '1'
   },
   caption: {
     textDecoration: 'none',
@@ -25,7 +33,7 @@ const ResultCard = (props) => {
 
   //TODO: center the image
   return (
-    <Card>
+    <Card className={classes.eachCard}>
       <CardHeader title={title} />
       {image_src ? (
         <CardMedia
@@ -35,7 +43,7 @@ const ResultCard = (props) => {
           src={`${image_src}`}
         / >) :
         <CircularProgress color="secondary" />}
-        <CardContent>
+        <CardContent className={classes.cardContent}>
           <Link to={{pathname:`/results/${id}`, state: { movieId: id} }}>
             <Typography variant="caption" className={classes.caption}>
               Read more

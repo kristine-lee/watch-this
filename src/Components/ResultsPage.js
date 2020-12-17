@@ -9,7 +9,8 @@ const useStyles = makeStyles(() => ({
     height: '100vh',
    },
   card: {
-    maxWidth: 345
+    maxWidth: 345,
+    textAlign: 'center'
   }
 }
 ));
@@ -18,18 +19,15 @@ const ResultsPage = (props) => {
 
   const { results } = props.location.state;
 
-  // console.log("RESULTS", results)
-
   const classes = useStyles();
 
   return (
     <Container maxwidth="lg" justify="center" className={classes.root}>
-      <Grid container justify="center" >
+      <Grid container justify="center" spacing={2} >
           {results ?  results.map((result) =>
-            (<Grid item xs={3} className={classes.card}><ResultCard key={result._id} id={result.imdbID} title={result.Title} image_src={result.Poster} /></Grid>)):
+            (<Grid item xs={12} sm={6} md={4} className={classes.card}><ResultCard key={result._id} id={result.imdbID} title={result.Title} image_src={result.Poster} /></Grid>)):
             <CircularProgress color="secondary" />}
       <ul>
-      {/* {results && results.map((result, index) => <li key={index}><Link to={`/movie/${result.id}`}> {result.title} </Link></li>)} */}
       </ul>
      </Grid>
     </Container>
