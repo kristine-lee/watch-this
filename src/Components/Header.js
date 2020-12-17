@@ -1,16 +1,24 @@
 import React from 'react';
-import { AppBar, Toolbar, makeStyles, Typography, CssBaseline } from '@material-ui/core';
+import { AppBar, Toolbar, makeStyles, CssBaseline } from '@material-ui/core';
 import { withRouter } from "react-router-dom";
 
 
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+  },
+  header: {
+    backgroundColor: 'transparent',
+    boxShadow: 'none',
+    position: 'static'
   },
   siteName: {
     [theme.breakpoints.down("xs")]: {
       flexGrow: 1
+    },
+    '&:hover': {
+      'cursor': 'pointer'
     }
   },
 })
@@ -27,14 +35,14 @@ const Header = props => {
   }
 
   return (
-    <AppBar position="static">
-      <CssBaseline />
-      <Toolbar>
+    <>
+  <CssBaseline />
+    <AppBar className={classes.header}>
         <h1 className={classes.siteName} onClick={handleClick}>
           🍿Watch This
         </h1>
-      </Toolbar>
     </AppBar>
+    </>
   )
 }
 

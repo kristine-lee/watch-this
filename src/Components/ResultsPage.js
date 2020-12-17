@@ -1,8 +1,7 @@
 import React from 'react';
-import {SingleMovieContext} from '../context';
-import { Card, Grid, makeStyles, Container } from '@material-ui/core';
+import { Card, CircularProgress, Grid, makeStyles, Container } from '@material-ui/core';
+// import Skeleton from '@material-ui/lab/Skeleton';
 import {Link, Redirect} from 'react-router-dom';
-import axios from 'axios';
 
 import ResultCard from './ResultCard';
 
@@ -18,8 +17,6 @@ const useStyles = makeStyles(() => ({
 
 const ResultsPage = (props) => {
   const { results } = props.location.state;
-  // const [movieId, setMovieId] = React.useState(0)
-  const [singleMovie, setSingleMovie] = React.useState(null);
   // const [showSingleMovie, setShowSingleMovie] = React.useState(false);
 
   console.log("RESULTS", results)
@@ -62,11 +59,14 @@ const ResultsPage = (props) => {
   return (
     <Container maxwidth="lg" justify="center" className={classes.root}>
       <Grid container justify="center" >
-        {results && results.map((result) =>
+          {results ?  results.map((result) =>
+            (<Grid item xs={3} className={classes.card}><ResultCard key={result._id} id={result.imdbID} title={result.Title} image_src={result.Poster} /></Grid>)):
+            <CircularProgress color="secondary" />}
+        {/* {results && results.map((result) =>
         <Grid item xs={3} className={classes.card}>
           <ResultCard key={result._id} id={result.imdbID} title={result.Title} image_src={result.Poster} />
         </Grid>
-        )}
+        )} */}
       <ul>
       {/* {results && results.map((result, index) => <li key={index}><Link to={`/movie/${result.id}`}> {result.title} </Link></li>)} */}
       </ul>
@@ -77,6 +77,4 @@ const ResultsPage = (props) => {
 
 export default ResultsPage;
 
-//TODO: need to separate link from the title
-//maybe have like a preview component on this one with title and poster
-//and when someone clicks it sends axios request -> singlemovie
+//TODO: replace spinner with skeleton. having issues with importing it

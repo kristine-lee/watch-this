@@ -1,33 +1,28 @@
 import React from 'react';
 import axios from 'axios';
-import { Grid, makeStyles } from '@material-ui/core';
+import { Grid, Paper, makeStyles, CssBaseline } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   root: {
     height: '100vh',
    },
+  paper : {
+    textAlign: "center",
+  },
+  image: {
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  },
+  container: {
+    margin: '3px'
+  },
+  title: {
+    alignSelf: 'center',
+    margin: '0 auto'
+  }
 }));
-
-/*
-class DataProvider extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { data: null };
-    setTimeout(() => this.setState({ data: 'Hey there!' }), 5000);
-  }
-  render() {
-    if (this.state.data === null) return null;
-    return (
-      <section>{ this.props.render(this.state.data) }</section>
-    );
-  }
-}
-
-<DataProvider render={ data => <p>The data is here!</p> } />
-https://krasimir.gitbooks.io/react-in-patterns/content/chapter-04/#function-as-a-children-render-prop
-*/
 
 const SingleMovie = () => {
   const [likes, setLikes] = React.useState(0);
@@ -67,17 +62,24 @@ const SingleMovie = () => {
 
   return (
     <div className={classes.root}>
-      <Grid container direction="column" alignItems="center" spacing={3}>
-        <h1>Getting some movies here</h1>
-        <Grid item xs>
+      <CssBaseline />
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={8} className={classes.title}>
         {singleMovie && <h2>{singleMovie.Title}</h2>}
         </Grid>
-        <Grid item xs>
-         <ul>
-           <li>Director: {singleMovie.Director} </li>
-           <li>Release Year: {singleMovie.Released.slice(-4)} </li>
-           <li>Description: {singleMovie.Plot} </li>
-         </ul>
+        <Grid item xs={11} sm={5} className={classes.container}>
+          <Paper variant="outlined" elevation="3" className={classes.paper}>
+           {singleMovie && <img className={classes.image} alt={`poster for the movie ${singleMovie.Title}`} src={singleMovie.Poster} /> }
+          </Paper>
+        </Grid>
+        <Grid item xs={11} sm={5} className={classes.container}>
+          {singleMovie &&
+        <ul>
+        <li>Director: {singleMovie.Director} </li>
+        <li>Release Year: {singleMovie.Released.slice(-4)} </li>
+        <li>Description: {singleMovie.Plot} </li>
+      </ul>
+          }
         </Grid>
       </Grid>
     </div>

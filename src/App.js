@@ -6,7 +6,6 @@ import Routes from './Routes'
 
 import { MoviesProvider, SingleMovieProvider } from './context'
 
-// import './layout.scss'
 import './App.css'
 
 

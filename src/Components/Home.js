@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 
 const FrontText = React.memo(() => {
   return (
-    <h3 className="type-intro anim-typewriter">Movie Search, Redefined For You</h3>
+    <h3 className="type-intro anim-typewriter">Movie Search, All Redefined For You</h3>
   )
 })
 
@@ -59,7 +59,6 @@ const Home = () => {
           </Grid>
      <div className="row">
       <SearchBar setResults={setResults} />
-      {/* {results && <ResultsPage results={results} />} */}
     </div>
     </Container>
   </React.Fragment>
