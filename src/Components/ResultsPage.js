@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CircularProgress, Grid, makeStyles, Container } from '@material-ui/core';
 // import Skeleton from '@material-ui/lab/Skeleton';
-import {Link, Redirect} from 'react-router-dom';
 
 import ResultCard from './ResultCard';
 
@@ -16,45 +15,12 @@ const useStyles = makeStyles(() => ({
 ));
 
 const ResultsPage = (props) => {
-  const { results } = props.location.state;
-  // const [showSingleMovie, setShowSingleMovie] = React.useState(false);
 
-  console.log("RESULTS", results)
+  const { results } = props.location.state;
+
+  // console.log("RESULTS", results)
 
   const classes = useStyles();
-
-  // const handleClick = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const movieDetails = await axios.get(`/api/movies/:id`, {
-  //       params: {
-  //         externalId: event.currentTarget.id
-  //       }
-  //     })
-  //     console.log("details", movieDetails.data)
-  //     if (!movieDetails.data) {
-  //       throw new Error("Was able to communicate with the back end, but there's an error!")
-  //     } else {
-  //       setSingleMovie(movieDetails.data);
-  //     }
-  //   } catch (error){
-  //     alert("There was an error!")
-  //   }
-  // }
-
-  // React.useEffect(() => {
-  //   if (singleMovie.id !== 0 && singleMovie.title.length > 0){
-  //     setShowSingleMovie(true);
-  //   }
-
-  //   if (showSingleMovie) {
-  //     return (<Redirect to={{
-  //       pathname: "/movies/:id",
-  //       state: { singleMovie: singleMovie }
-  //     }}
-  //   />)}
-  // }, [singleMovie, showSingleMovie])
-
 
   return (
     <Container maxwidth="lg" justify="center" className={classes.root}>
@@ -62,11 +28,6 @@ const ResultsPage = (props) => {
           {results ?  results.map((result) =>
             (<Grid item xs={3} className={classes.card}><ResultCard key={result._id} id={result.imdbID} title={result.Title} image_src={result.Poster} /></Grid>)):
             <CircularProgress color="secondary" />}
-        {/* {results && results.map((result) =>
-        <Grid item xs={3} className={classes.card}>
-          <ResultCard key={result._id} id={result.imdbID} title={result.Title} image_src={result.Poster} />
-        </Grid>
-        )} */}
       <ul>
       {/* {results && results.map((result, index) => <li key={index}><Link to={`/movie/${result.id}`}> {result.title} </Link></li>)} */}
       </ul>

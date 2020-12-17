@@ -18,7 +18,8 @@ const useStyle = makeStyles((theme) => ({
       flexGrow: 1
     },
     '&:hover': {
-      'cursor': 'pointer'
+      'cursor': 'pointer',
+      color: '#b6c2b7'
     }
   },
 })

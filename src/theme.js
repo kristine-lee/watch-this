@@ -75,7 +75,12 @@ const theme = createMuiTheme({
       "sans-serif",
       "-apple-system",
       "Segoe UI"
-    ]
+    ],
+    caption: {
+      color: `#b6c2b7`,
+      textDecoration: 'none',
+      align: 'center',
+    }
   },
   overrides: {
     MuiExpansionPanel: {

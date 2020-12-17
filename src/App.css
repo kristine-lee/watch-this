@@ -24,7 +24,8 @@ h1 {
        -0.3px 0.3px 0 #000,
         0.3px 0.3px 0 #000;
 }
-.cover {
+
+/* .cover {
   margin-top: 10vh;
   margin-bottom: 30vh;
   margin-left: 20vw;
@@ -37,7 +38,7 @@ h1 {
   filter: blur(0.5px);
   -webkit-filter: blur(0.5px);
   -moz-filter: blur(0.5px);
-}
+} */
 
 img {
   opacity: 0.5;
@@ -54,6 +55,7 @@ form button {
   margin: 1rem;
 }
 
+/*
 .searchbar-background {
   content:"";
   background-color: rgba(224, 148, 100, 0.67);
@@ -63,7 +65,8 @@ form button {
   display: inline-block;
   margin-right: 4vw;
   background-position: calc(100% - 50px) calc(100% - 20px);
-}
+} */
+
 
 /* Animation */
 .type-intro{
