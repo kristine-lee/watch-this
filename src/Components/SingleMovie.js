@@ -28,9 +28,9 @@ const useStyles = makeStyles(() => ({
 const SingleMovie = () => {
   const [likes, setLikes] = React.useState(0);
   const [dislikes, setDisLikes] = React.useState(0);
-  const [singleMovie, setSingleMovie] = React.useState(null) /* need initial state bc useEffect only runs after mounting  */
+  const [singleMovie, setSingleMovie] = React.useState(null)
 
-  //cannot deconstruct movieId directly, not sure why!
+  //cannot deconstruct movieId directly, not sure why! could be a TODO:
   const movieIdObj = useParams();
   const movieId = movieIdObj.id;
 
